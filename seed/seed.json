@@ -79,7 +79,6 @@
     },
     {
       "slug": "professor_profiles",
-      "title": "Professor Profiles",
       "fields": [
         {
           "slug": "name",
@@ -133,11 +132,11 @@
           "label": "Research interests",
           "type": "text"
         }
-      ]
+      ],
+      "label": "Professor Profiles"
     },
     {
       "slug": "research_areas",
-      "title": "Research Areas",
       "fields": [
         {
           "slug": "title",
@@ -156,11 +155,11 @@
           "label": "Display order",
           "type": "integer"
         }
-      ]
+      ],
+      "label": "Research Areas"
     },
     {
       "slug": "publications",
-      "title": "Publications",
       "fields": [
         {
           "slug": "title",
@@ -199,11 +198,11 @@
           "label": "Abstract or note",
           "type": "text"
         }
-      ]
+      ],
+      "label": "Publications"
     },
     {
       "slug": "research_projects",
-      "title": "Research Projects",
       "fields": [
         {
           "slug": "title",
@@ -218,7 +217,7 @@
           "type": "text"
         },
         {
-          "slug": "status",
+          "slug": "project_status",
           "label": "Status",
           "type": "string"
         },
@@ -237,11 +236,11 @@
           "label": "Project link",
           "type": "url"
         }
-      ]
+      ],
+      "label": "Research Projects"
     },
     {
       "slug": "lab_members",
-      "title": "Lab Members",
       "fields": [
         {
           "slug": "name",
@@ -275,11 +274,11 @@
           "label": "Display order",
           "type": "integer"
         }
-      ]
+      ],
+      "label": "Lab Members"
     },
     {
       "slug": "lab_news",
-      "title": "Lab News",
       "fields": [
         {
           "slug": "title",
@@ -303,7 +302,8 @@
           "label": "Related link",
           "type": "url"
         }
-      ]
+      ],
+      "label": "Lab News"
     }
   ],
   "taxonomies": [
@@ -490,8 +490,7 @@
           "department": "Department of Biochemistry and Molecular Biology",
           "institution": "Bangladesh Agricultural University",
           "scholar_url": "https://scholar.google.com/citations?hl=en&user=-hsEFR0AAAAJ",
-          "research_interests": "Natural Product Research; Phytomedicine; Network Biology; Marine Biotechnology; Lifestyle diseases",
-          "_key": "k0"
+          "research_interests": "Natural Product Research; Phytomedicine; Network Biology; Marine Biotechnology; Lifestyle diseases"
         }
       }
     ],
@@ -502,8 +501,7 @@
         "status": "published",
         "data": {
           "title": "Natural Product Research",
-          "display_order": 1,
-          "_key": "k0"
+          "display_order": 1
         }
       },
       {
@@ -512,8 +510,7 @@
         "status": "published",
         "data": {
           "title": "Phytomedicine",
-          "display_order": 2,
-          "_key": "k0"
+          "display_order": 2
         }
       },
       {
@@ -522,8 +519,7 @@
         "status": "published",
         "data": {
           "title": "Network Biology",
-          "display_order": 3,
-          "_key": "k0"
+          "display_order": 3
         }
       },
       {
@@ -532,8 +528,7 @@
         "status": "published",
         "data": {
           "title": "Marine Biotechnology",
-          "display_order": 4,
-          "_key": "k0"
+          "display_order": 4
         }
       },
       {
@@ -542,8 +537,7 @@
         "status": "published",
         "data": {
           "title": "Lifestyle diseases",
-          "display_order": 5,
-          "_key": "k0"
+          "display_order": 5
         }
       }
     ],
