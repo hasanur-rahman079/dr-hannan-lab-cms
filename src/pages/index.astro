@@ -1,0 +1,77 @@
+---
+import { getEmDashCollection } from "emdash";
+const { entries: profileEntries } = await getEmDashCollection("professor_profiles", { limit: 1 });
+const { entries: areaEntries } = await getEmDashCollection("research_areas", { limit: 10 });
+const profile = profileEntries[0]?.data ?? {};
+const name = profile.name || "Professor Dr. Md. Abdul Hannan";
+const department = profile.department || "Department of Biochemistry and Molecular Biology";
+const institution = profile.institution || "Bangladesh Agricultural University";
+const scholarUrl = profile.scholar_url || "https://scholar.google.com/citations?hl=en&user=-hsEFR0AAAAJ";
+const researchAreas = areaEntries.length
+  ? areaEntries.map((entry) => entry.data.title).filter(Boolean)
+  : ["Natural Product Research", "Phytomedicine", "Network Biology", "Marine Biotechnology", "Lifestyle diseases"];
+const nav = [
+  { label: "Profile", href: "#profile" },
+  { label: "Research", href: "#research" },
+  { label: "Publications", href: "#publications" },
+  { label: "The lab", href: "#lab" },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f6f1" />
+    <meta name="description" content={name + " — " + department + ", " + institution + "."} />
+    <title>{name + " | Academic Profile & Laboratory"}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Hannan Lab home"><span class="mark">H</span><span>HAN<span class="accent">N</span>AN <small>LABORATORY</small></span></a>
+      <nav aria-label="Main navigation">{nav.map((item) => <a href={item.href}>{item.label}</a>)}</nav>
+      <a class="header-cta" href={scholarUrl} target="_blank" rel="noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="top">
+      <section class="hero wrap" id="profile">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> ACADEMIC PROFILE &amp; RESEARCH GROUP</p>
+          <h1>Researching nature.<br /><em>Advancing health.</em></h1>
+          <p class="intro">{name}</p>
+          <p class="affiliation">{department}<br />{institution}</p>
+          <div class="hero-actions"><a class="button button-dark" href={scholarUrl} target="_blank" rel="noreferrer">Explore publications <span aria-hidden="true">↗</span></a><a class="text-link" href="#research">Discover the research <span aria-hidden="true">↓</span></a></div>
+          <div class="hero-note"><span class="note-dot"></span><span>Biochemistry · Molecular biology · Translational research</span></div>
+        </div>
+        <div class="hero-art" aria-label="Abstract botanical illustration">
+          <div class="art-ring ring-one"></div><div class="art-ring ring-two"></div>
+          <div class="art-orbit"></div><div class="art-core"><span>H</span></div>
+          <div class="art-leaf leaf-one"></div><div class="art-leaf leaf-two"></div><div class="art-leaf leaf-three"></div>
+          <div class="art-caption"><span>HANAN LAB</span><span>BAU · BANGLADESH</span></div>
+          <span class="art-index">01 / 05</span>
+        </div>
+      </section>
+
+      <section class="research-band" id="research"><div class="wrap research-inner">
+        <div><p class="eyebrow eyebrow-light">AREAS OF INTEREST</p><h2>Questions at the<br /><em>intersection of life.</em></h2></div>
+        <div class="research-list">{researchAreas.map((area, index) => <a class="research-item" href={scholarUrl} target="_blank" rel="noreferrer"><span class="research-num">0{index + 1}</span><span>{area}</span><span class="arrow" aria-hidden="true">↗</span></a>)}</div>
+      </div></section>
+
+      <section class="publication-section wrap" id="publications">
+        <div class="section-top"><div><p class="eyebrow">PUBLICATIONS &amp; SCHOLARSHIP</p><h2>Research in the<br /><em>public record.</em></h2></div><p class="section-copy">A growing body of collaborative work across biochemistry, health, and the life sciences.</p></div>
+        <a class="publication-card" href={scholarUrl} target="_blank" rel="noreferrer"><span class="pub-icon">↗</span><span><strong>View publications and citation profile</strong><small>Google Scholar · Professor Dr. Md. Abdul Hannan</small></span><span class="card-arrow" aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="lab-section" id="lab"><div class="wrap lab-inner"><div><p class="eyebrow">THE LABORATORY</p><h2>Curiosity, rigor,<br /><em>and collaboration.</em></h2></div><div class="lab-copy"><p>This academic profile brings together the professor’s research, publications, projects, and team in one place. Lab stories and opportunities can be added here as the group’s content is prepared.</p><a class="text-link" href="mailto:?subject=Academic%20collaboration">Start a conversation <span aria-hidden="true">↗</span></a></div></div></section>
+    </main>
+
+    <footer class="site-footer"><div class="wrap footer-inner"><a class="wordmark" href="#top"><span class="mark">H</span><span>HAN<span class="accent">N</span>AN <small>LABORATORY</small></span></a><span>{name} · {institution}</span><a href="#top">Back to top ↑</a></div></footer>
+  </body>
+</html>
+
+<style>
+:root{--ink:#172a28;--muted:#687772;--paper:#f7f6f1;--line:#d9ded8;--green:#274b43;--gold:#bb915b;--serif:"Playfair Display",Georgia,serif;--sans:"DM Sans",Arial,sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}.wrap{width:min(1180px,calc(100% - 64px));margin-inline:auto}.site-header{height:88px;padding:0 max(32px,calc((100vw - 1300px)/2));display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:24px}.wordmark{display:flex;align-items:center;gap:11px;color:var(--ink);font-size:13px;font-weight:700;letter-spacing:.13em;text-decoration:none}.wordmark small{display:block;margin-top:4px;font-size:8px;font-weight:500;letter-spacing:.24em;color:var(--muted)}.mark{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--gold);font:20px var(--serif);color:var(--green)}.accent{color:var(--gold)}nav{display:flex;gap:32px}nav a,.header-cta,.text-link{font-size:12px;color:var(--ink);text-decoration:none}nav a{color:#53635e}nav a:hover,.text-link:hover{color:var(--gold)}.header-cta{border:1px solid var(--line);padding:12px 16px}.hero{min-height:600px;display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:6%;padding-block:65px 75px}.eyebrow{font-size:9px;font-weight:700;letter-spacing:.2em;color:var(--gold);display:flex;align-items:center;gap:11px;margin:0 0 25px}.eyebrow-line{width:28px;height:1px;background:var(--gold)}h1,h2{font-family:var(--serif);font-weight:500;letter-spacing:-.035em}h1{font-size:clamp(46px,5.5vw,76px);line-height:1.08;margin:0 0 29px}h1 em,h2 em{font-weight:500;color:var(--green)}.intro{font-size:20px;font-weight:600;margin:0 0 8px}.affiliation{font-size:13px;line-height:1.8;color:var(--muted);margin:0}.hero-actions{display:flex;align-items:center;gap:26px;margin-top:30px}.button{display:inline-flex;align-items:center;gap:22px;padding:15px 19px;text-decoration:none;font-size:11px}.button-dark{background:var(--green);color:white}.button-dark:hover{background:#1b3932}.text-link{border-bottom:1px solid var(--gold);padding:0 0 7px}.hero-note{display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:20px;margin-top:57px;font-size:10px;color:var(--muted)}.note-dot{width:6px;height:6px;background:var(--gold);border-radius:50%}.hero-art{height:440px;position:relative;overflow:hidden;background:#e9ede6;display:grid;place-items:center}.hero-art:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 68% 25%,rgba(255,255,255,.78),transparent 38%),linear-gradient(145deg,transparent 40%,rgba(39,75,67,.07))}.art-ring{position:absolute;border:1px solid rgba(39,75,67,.15);border-radius:50%;width:340px;height:340px}.ring-two{width:255px;height:255px;border-color:rgba(187,145,91,.38)}.art-orbit{position:absolute;width:280px;height:98px;border:1px solid rgba(187,145,91,.7);border-radius:50%;transform:rotate(-36deg)}.art-core{width:100px;height:100px;border-radius:50%;display:grid;place-items:center;color:#fff;background:var(--green);font:56px var(--serif);box-shadow:0 0 0 15px rgba(39,75,67,.07);z-index:1}.art-leaf{position:absolute;width:78px;height:34px;border-radius:100% 0 100% 0;background:rgba(39,75,67,.68);transform:rotate(35deg)}.leaf-one{top:105px;left:118px}.leaf-two{right:86px;bottom:126px;transform:rotate(215deg);background:rgba(187,145,91,.78)}.leaf-three{top:83px;right:108px;transform:rotate(120deg) scale(.7);background:#7b9989}.art-caption{position:absolute;bottom:20px;left:22px;right:22px;display:flex;justify-content:space-between;font-size:8px;letter-spacing:.16em;color:#61716a}.art-index{position:absolute;right:22px;top:20px;font-size:9px;letter-spacing:.1em;color:var(--muted)}.research-band{background:var(--green);color:#fff;padding:78px 0}.research-inner{display:grid;grid-template-columns:.8fr 1.2fr;gap:12%}.eyebrow-light{color:#d0b184}.research-band h2,.publication-section h2,.lab-section h2{font-size:clamp(37px,4.1vw,54px);line-height:1.14;margin:0}.research-band h2 em{color:#d5bb94}.research-list{border-top:1px solid rgba(255,255,255,.22)}.research-item{display:grid;grid-template-columns:44px 1fr 24px;align-items:center;min-height:58px;border-bottom:1px solid rgba(255,255,255,.22);color:white;text-decoration:none;font-size:12px}.research-num{font-size:9px;color:#d5bb94}.arrow{color:#d5bb94}.publication-section{padding-block:95px}.section-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:35px}.section-top h2 em{color:var(--green)}.section-copy{max-width:330px;font-size:12px;line-height:1.8;color:var(--muted);margin:0 0 5px}.publication-card{display:flex;align-items:center;gap:18px;padding:23px 20px;border:1px solid var(--line);color:var(--ink);text-decoration:none;background:rgba(255,255,255,.45)}.publication-card:hover{border-color:var(--gold)}.pub-icon{width:38px;height:38px;display:grid;place-items:center;background:#e9ede6;color:var(--green)}.publication-card strong,.publication-card small{display:block}.publication-card strong{font-size:12px;font-weight:600}.publication-card small{font-size:10px;color:var(--muted);margin-top:6px}.card-arrow{margin-left:auto;color:var(--gold)}.lab-section{padding:78px 0;background:#eeeee7}.lab-inner{display:grid;grid-template-columns:1fr 1fr;gap:14%;align-items:center}.lab-copy p{font-size:13px;line-height:1.9;color:#596b64;margin:0 0 23px}.site-footer{border-top:1px solid var(--line)}.footer-inner{min-height:92px;display:flex;justify-content:space-between;align-items:center;gap:20px}.footer-inner>span,.footer-inner>a:last-child{font-size:9px;color:var(--muted);text-decoration:none}@media(max-width:760px){.wrap{width:min(100% - 38px,560px)}.site-header{height:72px;padding-inline:19px}.site-header nav{display:none}.header-cta{padding:10px;font-size:10px}.hero{grid-template-columns:1fr;padding-block:55px;gap:40px}.hero-art{height:330px}.research-band{padding:60px 0}.research-inner,.lab-inner{grid-template-columns:1fr;gap:38px}.publication-section{padding-block:66px}.section-top{display:block}.section-copy{margin-top:22px}.footer-inner{padding-block:22px;flex-wrap:wrap}.footer-inner>span{order:3;width:100%}}
+</style>
